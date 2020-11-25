@@ -1,9 +1,6 @@
 FROM python:3.7
 RUN mkdir /app 
-COPY *.py /app/
-COPY *.toml /app/ 
-COPY .env /app/ 
-COPY runGunicorn.sh /app/
+COPY . /app
 
 WORKDIR /app
 
@@ -20,4 +17,6 @@ RUN poetry install --no-dev
 
 EXPOSE 5000
 
+RUN cd /app
 ENTRYPOINT ["./runGunicorn.sh"]
+#CMD ["poetry", "run", "flask", "run"]

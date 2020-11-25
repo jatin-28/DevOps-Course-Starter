@@ -73,3 +73,15 @@ You can also use vagrant
 ```
 $ vagrant up
 ```
+
+### Docker
+
+Build the container
+```
+$ docker build -tag todo-app .
+```
+
+Run the container on port 5000
+```
+$docker run -d -p 5000:5000 todo-app
+```
