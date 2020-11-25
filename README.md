@@ -65,7 +65,7 @@ TODO_BOARD_ID
 ### gunicorn support
 Support for gunicorn local run 
 ```
-poetry run gunicorn --daemon --bind 0.0.0.0:5000 -w 1 "wsgi:create_app()"
+$ poetry run gunicorn --daemon --bind 0.0.0.0:5000 -w 1 "wsgi:create_app()"
 ```
 
 ### Vagrant
@@ -83,5 +83,5 @@ $ docker build -tag todo-app .
 
 Run the container on port 5000
 ```
-$docker run -d -p 5000:5000 todo-app
+$ docker run -d --name todo-app --env-file=.env -p 5000:5000 todo-app
 ```
