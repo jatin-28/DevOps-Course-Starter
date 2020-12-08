@@ -85,3 +85,14 @@ Run the container on port 5000
 ```
 $ docker run -d --name todo-app --env-file=.env -p 5000:5000 todo-app
 ```
+
+Building and running development depending on target
+```
+$ docker build --target development --tag todo-app:dev .
+$ docker run --env-file ./.env -p 5100:5000 --mount type=bind,source="$(pwd)",target=/app/todo-app todo-app:dev
+```
+
+Building and running production depending on target
+```
+$ docker build --target production --tag todo-app:prod .
+```
