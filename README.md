@@ -78,7 +78,7 @@ $ vagrant up
 
 Build the container
 ```
-$ docker build -tag todo-app .
+$ docker build --tag todo-app .
 ```
 
 Run the container on port 5000

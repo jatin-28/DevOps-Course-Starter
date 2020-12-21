@@ -2,13 +2,12 @@ import os
 import random
 from threading import Thread
 
+from todoapp import app
+from todoapp import common
 import pytest
 from dotenv import find_dotenv, load_dotenv
 from selenium import webdriver
-
-import app
-import common
-from trello_request import TrelloRequest
+from todoapp.trello_request import TrelloRequest
 
 
 class TrelloCreateBoard(TrelloRequest):

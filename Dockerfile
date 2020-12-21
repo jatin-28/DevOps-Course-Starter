@@ -3,8 +3,10 @@ FROM python:3.7 as base
 RUN mkdir /app 
 WORKDIR /app
 
-ENV PYTHONPATH=${PYTHONPATH}:${PWD} 
-RUN pip3 install poetry
+ENV APP_INSTALL=/app
+ENV POETRY_HOME=/poetry
+ENV PATH=${POETRY_HOME}/bin:${PATH}
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
 # DEVELOPMENT
 FROM base as development

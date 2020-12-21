@@ -1,10 +1,9 @@
-import os
 from unittest.mock import patch
 
 import pytest
 from dotenv import load_dotenv, find_dotenv
 
-import app
+from todoapp import app
 
 
 def _mock_response(
