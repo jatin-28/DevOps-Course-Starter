@@ -23,6 +23,7 @@ CMD ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
 # PRODUCTION
 FROM base as production
 
+COPY runGunicorn.sh /app
 COPY todoapp /app/todoapp
 
 RUN poetry config virtualenvs.create false && \
@@ -70,8 +71,7 @@ COPY tests /app/tests
 RUN poetry config virtualenvs.create false && \
     poetry install
 
-CMD ["poetry", "run", "flask", "run"]
-#CMD ["poetry", "run", "pytest", "--junit-xml", "test_results.xml"]
+CMD ["poetry", "run", "pytest", "--junit-xml", "test_results.xml"]
 
 
 

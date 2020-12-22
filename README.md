@@ -74,6 +74,13 @@ You can also use vagrant
 $ vagrant up
 ```
 
+### Docker Compose
+
+```
+$ docker-compose build && docker-compose up -d <target>
+```
+
+
 ### Docker
 
 Build the container
@@ -101,5 +108,5 @@ $ docker run --env-file ./.env -p 5200:5000 todo-app:prod
 Building and running tests 
 ```
 $ docker build --target runtests --tag todo-app:runtests .
-$ docker run --env-file ./.env.test -p 5300:5000 --mount type=bind,source="$(pwd)/todoapp",target=/app/todoapp todo-app:runtests
+$ docker run --env-file ./.env.test -p 5300:5000 todo-app:runtests
 ```
