@@ -18,7 +18,6 @@ coverage.xml
 .git
 
 # other 
-/tests/
 .gitignore
 *.log
 Vagrantfile
