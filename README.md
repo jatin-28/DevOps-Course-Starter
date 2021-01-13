@@ -32,6 +32,17 @@ $ cp .env.template .env  # (first time only)
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
 
+### Notes
+
+The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change).
+
+APP_API_KEY - This is the Trello API key which you can obtain from [here](https://trello.com/app-key)
+APP_TOKEN - This is the Trello APP token which you can be obtained by clicking the create manual Token link on the same page as fetching the app key
+
+Create a trello TODO board with 2 lists and obtain their IDs and set in the environment variables below
+
+TODO_BOARD_ID 
+
 ### Running tests locally
 
 ```bash
@@ -40,7 +51,7 @@ PYTHONPATH=. pytest tests
 
 #### Just Unit tests
 ```bash
-PYTHONPATH=. pytest tests/unit
+PYTHONPATH=. pytegit pushst tests/unit
 ```
 
 #### Just Integration tests
@@ -67,16 +78,6 @@ You should see output similar to the following:
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
-### Notes
-
-The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change).
-
-APP_API_KEY - This is the Trello API key which you can obtain from [here](https://trello.com/app-key)
-APP_TOKEN - This is the Trello APP token which you can be obtained by clicking the create manual Token link on the same page as fetching the app key
-
-Create a trello TODO board with 2 lists and obtain their IDs and set in the environment variables below
-
-TODO_BOARD_ID 
 
 ### gunicorn support
 Support for gunicorn local run 
