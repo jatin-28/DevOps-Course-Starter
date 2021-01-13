@@ -93,7 +93,7 @@ def test_app():
 @pytest.fixture(scope="module")
 def driver():
     options = webdriver.FirefoxOptions()
-    # TODO trialing running tests in docker. options.add_argument('--headless')
+    options.add_argument('--headless')
     with webdriver.Firefox(options=options) as driver:
         yield driver
 

@@ -12,8 +12,7 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 
 # DEVELOPMENT
 FROM base as development
-ENV FLASK_APP=app \
-    FLASK_ENV=development
+ENV FLASK_ENV=development
 
 RUN poetry config virtualenvs.create false && \
     poetry install --no-dev    
@@ -23,19 +22,16 @@ CMD ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
 # PRODUCTION
 FROM base as production
 
-COPY runGunicorn.sh /app
-COPY todoapp /app/todoapp
-
 RUN poetry config virtualenvs.create false && \
     poetry install --no-dev
 
-RUN cd /app
+COPY runGunicorn.sh /app
+COPY todoapp /app/todoapp
 
 RUN chmod 755 runGunicorn.sh && \
     mkdir -p /var/log/gunicorn
 
-ENV FLASK_APP=app \
-    FLASK_ENV=production
+ENV FLASK_ENV=production
 
 ENTRYPOINT ["./runGunicorn.sh"]
 
@@ -62,16 +58,15 @@ RUN FIREFOX_SETUP=firefox-setup.tar.bz2 && \
     ln -s /opt/firefox/firefox /usr/bin/firefox && \
     rm $FIREFOX_SETUP
 
-ENV FLASK_APP=app \
-    FLASK_ENV=development
+ENV FLASK_ENV=development
     
 COPY todoapp /app/todoapp
-COPY tests /app/tests
+COPY unittests /app/tests
 
 RUN poetry config virtualenvs.create false && \
     poetry install
 
-CMD ["poetry", "run", "pytest", "--junit-xml", "test_results.xml"]
+ENTRYPOINT ["poetry", "run", "pytest", "--junit-xml", "test_results.xml"]
 
 
 

@@ -32,7 +32,23 @@ $ cp .env.template .env  # (first time only)
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
 
-## Running the App
+### Running tests locally
+
+```bash
+PYTHONPATH=. pytest tests
+```
+
+#### Just Unit tests
+```bash
+PYTHONPATH=. pytest tests/unit
+```
+
+#### Just Integration tests
+```bash
+PYTHONPATH=. pytest tests/integration
+```
+
+## Running the App Locally
 
 Once the all dependencies have been installed, start the Flask app in development mode within the poetry environment by running:
 ```bash
@@ -80,18 +96,7 @@ $ vagrant up
 $ docker-compose build && docker-compose up -d <target>
 ```
 
-
 ### Docker
-
-Build the container
-```
-$ docker build --tag todo-app .
-```
-
-Run the container on port 5000
-```
-$ docker run -d --name todo-app --env-file=.env -p 5000:5000 todo-app
-```
 
 Building and running development 
 ```
@@ -108,5 +113,10 @@ $ docker run --env-file ./.env -p 5200:5000 todo-app:prod
 Building and running tests 
 ```
 $ docker build --target runtests --tag todo-app:runtests .
-$ docker run --env-file ./.env.test -p 5300:5000 todo-app:runtests
+
+# unit tests
+$ docker run --env-file ./.env.test todo-app:runtests
+
+# integration tests
+$ docker run --env-file ./.env todo-app:runtests
 ```
